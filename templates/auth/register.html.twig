@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="bg-gray-100 flex justify-center items-center h-screen">
+
+    <!-- Right: Login Form -->
+    <div class="sm:20 p-8 w-11/12 max-w-sm bg-white rounded-md drop-shadow-md">
+        <h1 class="text-2xl font-semibold mb-4">Sign up</h1>
+        {{ form_start(form) }}
+        <!-- First Name Input -->
+        <div class="mb-4">
+            <label for="first_name" class="block text-gray-600">{{ field_label(form.firstName) }}</label>
+            <input type="text"
+                   id="first_name"
+                   name="{{ field_name(form.firstName) }}"
+                   class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+        </div>
+        <!-- Last Name Input -->
+        <div class="mb-4">
+            <label for="last_name" class="block text-gray-600">{{ field_label(form.lastName) }}</label>
+            <input type="text"
+                   id="last_name"
+                   name="{{ field_name(form.lastName) }}"
+                   class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+        </div>
+        <!-- Last Name Input -->
+        <div class="mb-4">
+            <label for="email" class="block text-gray-600">{{ field_label(form.email) }}</label>
+            <input type="email"
+                   id="email"
+                   name="{{ field_name(form.email) }}"
+                   class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+        </div>
+        <!-- Username Input -->
+        <div class="mb-4">
+            <label for="username" class="block text-gray-600">{{ field_label(form.username) }}</label>
+            <input type="text"
+                   id="username"
+                   name="{{ field_name(form.username) }}"
+                   class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                   autocomplete="off">
+        </div>
+        <!-- Password Input -->
+        <div class="mb-4">
+            <label for="password" class="block text-gray-600">{{ field_label(form.password) }}</label>
+            <input type="password"
+                   id="password"
+                   name="{{ field_name(form.password) }}"
+                   class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                   autocomplete="off">
+        </div>
+        <!-- Remember Me Checkbox -->
+        <div class="mb-4 flex items-center">
+            <input type="checkbox" id="remember" name="remember" class="text-blue-500">
+            <label for="remember" class="text-gray-600 ml-2">Remember Me</label>
+        </div>
+        <!-- Forgot Password Link -->
+        <div class="mb-6 text-blue-500">
+            <a href="#" class="hover:underline">Forgot Password?</a>
+        </div>
+        <!-- Login Button -->
+        <button type="submit"
+                name="{{ field_name(form.register) }}"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">{{ field_label(form.register) }}</button>
+        {{ form_end(form) }}
+        <!-- Sign up  Link -->
+        <div class="mt-6 text-blue-500 text-center">
+            <a href="{{ path('login') }}" class="hover:underline">Login up Here</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

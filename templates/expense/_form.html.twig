@@ -1,0 +1,79 @@
+<div class="flex justify-center items-center" xmlns="http://www.w3.org/1999/html">
+    <div class="lg:w-2/5 md:w-1/2 w-2/3">
+        {{ form_start(form) }}
+        <div class="min-w-full">
+            <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">{{ form_title|default('Add') }} Expense</h1>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="transaction_type">{{ field_label(form.transactionType) }}</label>
+                <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                       type="text" name="{{ field_name(form.transactionType) }}"
+                       id="transaction_type"
+                       placeholder="{{ field_label(form.transactionType) }}"
+                       value="{{ expense.transactionType|default('') }}"
+                />
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="comment">{{ field_label(form.comment) }}</label>
+                <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                       type="text" name="{{ field_name(form.comment) }}"
+                       id="comment"
+                       placeholder="{{ field_label(form.comment) }}"
+                       value="{{ expense.comment|default('') }}"
+                />
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="bank">{{ field_label(form.bank) }}</label>
+                <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                       type="text"
+                       name="{{ field_name(form.bank) }}"
+                       id="bank"
+                       placeholder="{{ field_label(form.bank) }}"
+                       value="{{ expense.bank|default('') }}"
+                />
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="amount">{{ field_label(form.amount) }}</label>
+                <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                       type="text"
+                       name="{{ field_name(form.amount) }}"
+                       id="amount"
+                       placeholder="{{ field_label(form.amount) }}"
+                       value="{{ expense.amount|default('') }}"
+                />
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="category">{{ field_label(form.category) }}</label>
+                <select name="{{ field_name(form.category) }}"
+                        id="category"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    {% for label, id in field_choices(form.category) %}
+                        <option
+                                value="{{ id }}"
+                                {{ (expense.category.id|default(1) == id) ? 'selected' : '' }}
+                        >{{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="transaction_date">{{ field_label(form.transactionDate) }}</label>
+                <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                       type="date"
+                       name="{{ field_name(form.transactionDate) }}"
+                       id="transaction_date"
+                        {% if app.request.get('_route') != 'add_expense' %}
+                            value="{{ (expense.transactionDate) ? expense.transactionDate | date('Y-m-d') : '' }}"
+                        {% endif %}
+
+                />
+            </div>
+            <button type="submit"
+                    id="expense_save"
+                    name="{{ field_name(form.save) }}"
+                    class="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">
+                {{ button_label|default('Add') }}
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

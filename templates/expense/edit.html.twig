@@ -1,0 +1,9 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Edit Expense | {{ parent() }}{% endblock %}
+
+{% block main %}
+
+    {% include 'expense/_form.html.twig' with {'button_label': 'Update', 'form_title': 'Update'} %}
+
+{% endblock %}
